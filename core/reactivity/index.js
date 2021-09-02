@@ -1,4 +1,4 @@
-// 响应式库
+// Vue 原生响应式库，我们现在来写一下这个库
 // const { effect } = require("@vue/reactivity");
 
 // 依赖
