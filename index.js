@@ -18,7 +18,7 @@ import { effectWatch, reactive } from "./core/reactivity/index.js";
 // function update() {
 //     b = a + 10
 //     console.log(b)
-// }
+// } 
 
 // a = 20
 // update()
