@@ -42,7 +42,7 @@ Date.prototype.Format = function(formatStr)
 async function main() {
   let targetVersion = args._[0]
   let whereCK
-  let now = new Date().Format('YYYY-MM-DD hh:mm:ss')
+  let now = new Date().Format('YYYY-MM-DD hh:mm:ss 星期W')
 
   if (!targetVersion) {
     const { release } = await prompt ({
@@ -73,13 +73,12 @@ async function main() {
     })
   }
 
-  // 产生 changelog
-  await run(`yarn`, ['changelog'])
+  // commit 
   const { stdout } = await run('git', ['diff'], { stdio: 'pipe' })
   if (stdout) {
     step('\n提交更改的内容...')
     await runIfNotDry('git', ['add', '-A'])
-    await runIfNotDry('git', ['commit', '-m', `更新内容：${targetVersion}`])
+    await runIfNotDry('git', ['commit', '-m', `${targetVersion}`])
   } else {
     console.log('No changes to commit.')
   }

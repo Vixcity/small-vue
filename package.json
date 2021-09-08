@@ -1,22 +1,28 @@
 {
   "name": "small-vue",
   "version": "1.0.0",
-  "description": "small-vue",
+  "description": "精简的Vue核心逻辑",
   "main": "index.js",
+  "author": "Vixcity",
+  "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "release": "node scripts/release.js",
-    "releaseDry": "node scripts/release.js --dry",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
+    "releaseDry": "node scripts/release.js --dry"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "@vue/reactivity": "^3.2.7",
-    "conventional-changelog": "^3.1.24",
+    "chalk": "^4.1.2",
     "enquirer": "^2.3.6",
     "execa": "^5.1.1",
-    "minimist": "^1.2.5"
+    "minimist": "^1.2.5",
+    "typescript": "^4.4.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.4",
+    "@babel/preset-typescript": "^7.15.0",
+    "@types/jest": "^27.0.1",
+    "babel-jest": "^27.1.0",
+    "jest": "^27.1.0"
   }
 }
