@@ -106,6 +106,8 @@ async function main() {
 
   if (isDryRun) {
     console.log(`\nDry run finished - run git diff to see package changes.`)
+  } else {
+    step('\n更新完成')
   }
 }
 
