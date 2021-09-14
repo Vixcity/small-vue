@@ -1,14 +1,38 @@
+import { extend } from "../shared";
+
 class ReactiveEffect {
   private _fn: any;
+  deps = [];
+  active = true;
+  onStop?: () => void;
 
-  constructor(fn,public scheduler?) {
+  public scheduler: Function | undefined;
+  constructor(fn, scheduler?: Function) {
     this._fn = fn;
+    this.scheduler = scheduler;
   }
 
   run() {
     activeEffect = this;
     return this._fn();
   }
+
+  stop() {
+    // 如果频繁的 stop 性能就很不好，所以我们应该给他一个状态 active
+    if (this.active) {
+      cleanupEffect(this);
+      if (this.onStop) {
+        this.onStop();
+      }
+      this.active = false;
+    }
+  }
+}
+
+function cleanupEffect(effect) {
+  effect.deps.forEach((dep: any) => {
+    dep.delete(effect);
+  });
 }
 
 const targetMap = new Map();
@@ -28,6 +52,7 @@ export function track(target, key) {
   }
 
   dep.add(activeEffect);
+  activeEffect.deps.push(dep);
 }
 
 export function trigger(target, key) {
@@ -35,22 +60,31 @@ export function trigger(target, key) {
   let dep = depsMap.get(key);
 
   for (const effect of dep) {
-    if(effect.scheduler){
-      effect.scheduler()
-    }else {
-
+    if (effect.scheduler) {
+      effect.scheduler();
+    } else {
       effect.run();
     }
   }
 }
 
 let activeEffect;
-export function effect(fn,options: any = {}) {
+export function effect(fn, options: any = {}) {
+  // fn
   const _effect = new ReactiveEffect(fn, options.scheduler);
+  // options
+  // Object.assign(_effect, options)
+  // extend
+  extend(_effect, options)
 
   _effect.run();
 
-  const runner = _effect.run.bind(_effect)
+  const runner: any = _effect.run.bind(_effect);
+  runner.effect = _effect;
 
-  return runner
+  return runner;
+}
+
+export function stop(runner) {
+  runner.effect.stop();
 }
