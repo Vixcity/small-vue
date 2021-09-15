@@ -1,4 +1,4 @@
-import { readonly, isReadonly } from "../reactive";
+import { readonly, isReadonly, isProxy } from "../reactive";
 describe("readonly", () => {
   it("happy path", () => {
     // not set 不可以被改写
@@ -9,10 +9,12 @@ describe("readonly", () => {
     expect(isReadonly(original)).toBe(false);
     expect(isReadonly(wrapped.bar)).toBe(true);
     expect(isReadonly(original.bar)).toBe(false);
+    expect(isProxy(wrapped)).toBe(true);
+
     expect(wrapped.foo).toBe(1);
   });
 
-  it("when then call set", () => {
+  it("should call console.warn when set", () => {
     // console.warn
     // mock
     console.warn = jest.fn();
