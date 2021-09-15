@@ -81,7 +81,12 @@ describe("effect", () => {
     obj.prop = 2;
     expect(dummy).toBe(2);
     stop(runner);
-    obj.prop = 3;
+    // set
+    // obj.prop = 3;
+
+    // get set
+    // obj.prop = obj.prop+1
+    obj.prop++;
     expect(dummy).toBe(2);
 
     // stopped effect should still be manually callable
@@ -94,13 +99,15 @@ describe("effect", () => {
     const obj = reactive({ foo: 1 });
     const onStop = jest.fn();
     let dummy;
-    const runner = effect(() => {
-      dummy = obj.foo     
-    },{
-      onStop,
-    })
+    const runner = effect(
+      () => {
+        dummy = obj.foo;
+      },
+      {
+        onStop,
+      }
+    );
     stop(runner);
     expect(onStop).toBeCalledTimes(1);
   });
-
 });
