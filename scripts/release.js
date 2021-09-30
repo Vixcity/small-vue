@@ -105,9 +105,10 @@ async function main() {
   } 
 
   if (isDryRun) {
-    console.log(`\nDry run finished - run git diff to see package changes.`)
+    step('测试更新完成')
   } else {
-    step('更新完成')
+    step('更新完成,将3秒后自动清空控制台')
+    setTimeout(await runIfNotDry('cls', ['']),3000)
   }
 }
 
