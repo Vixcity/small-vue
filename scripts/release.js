@@ -108,7 +108,7 @@ async function main() {
     step('测试更新完成')
   } else {
     step('更新完成,将3秒后自动清空控制台')
-    setTimeout(await runIfNotDry('cls', ['']),3000)
+    setTimeout(await runIfNotDry('cls', ['告辞']),3000)
   }
 }
 
