@@ -2,15 +2,18 @@
   "name": "small-vue",
   "version": "1.0.0",
   "description": "精简的Vue核心逻辑",
-  "main": "index.js",
+  "main": "lib/small-vue.cjs.js",
+  "module":"lib/small-vue.esm.js",
   "author": "Vixcity",
   "license": "MIT",
   "scripts": {
     "test": "jest",
+    "build": "rollup -c rollup.config.js",
     "release": "node scripts/release.js",
     "releaseDry": "node scripts/release.js --dry"
   },
   "dependencies": {
+    "@rollup/plugin-typescript": "^8.2.5",
     "chalk": "^4.1.2",
     "enquirer": "^2.3.6",
     "execa": "^5.1.1",
@@ -23,6 +26,8 @@
     "@babel/preset-typescript": "^7.15.0",
     "@types/jest": "^27.0.1",
     "babel-jest": "^27.1.0",
-    "jest": "^27.1.0"
+    "jest": "^27.1.0",
+    "rollup": "^2.57.0",
+    "tslib": "^2.3.1"
   }
 }
