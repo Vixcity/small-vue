@@ -20,7 +20,7 @@ Date.prototype.Format = function(formatStr)
     str=str.replace(/yyyy|YYYY/,this.getFullYear());   
     str=str.replace(/yy|YY/,(this.getYear() % 100)>9?(this.getYear() % 100).toString():'0' + (this.getYear() % 100));   
   
-    str=str.replace(/MM/,this.getMonth()>9?this.getMonth().toString():'0' + this.getMonth());   
+    str=str.replace(/MM/,this.getMonth()+1>9?(this.getMonth()+1).toString():'0' + this.getMonth()+1);   
     str=str.replace(/M/g,this.getMonth());   
   
     str=str.replace(/w|W/g,Week[this.getDay()]);   
