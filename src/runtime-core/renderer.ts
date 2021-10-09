@@ -1,3 +1,4 @@
+import { visitNode } from "../../node_modules/typescript/lib/typescript";
 import { isObject } from "../shared/index";
 import { createComponentInstance, setupComponent } from "./component";
 
@@ -27,22 +28,22 @@ function processElement(vnode: any, container: any) {
   mountElement(vnode, container);
 }
 
-function mountComponent(vnode: any, container) {
-  const instance = createComponentInstance(vnode);
+function mountComponent(initinalVNode: any, container) {
+  const instance = createComponentInstance(initinalVNode);
 
   setupComponent(instance);
-  setupRenderEffect(instance, container);
+  setupRenderEffect(instance, initinalVNode, container);
 }
 
 function mountElement(vnode: any, container: any) {
   const { children, type, props } = vnode;
-  const el = document.createElement(type);
+  const el = (vnode.el = document.createElement(type));
 
   // string || array
   if (typeof children === "string") {
     el.textContent = children;
-  } else if(Array.isArray(children)){
-    mountChildren(vnode, el)
+  } else if (Array.isArray(children)) {
+    mountChildren(vnode, el);
   }
 
   for (const key in props) {
@@ -54,15 +55,18 @@ function mountElement(vnode: any, container: any) {
 }
 
 function mountChildren(vnode, container) {
-  vnode.children.forEach(v => {
-    patch(v,container)
+  vnode.children.forEach((v) => {
+    patch(v, container);
   });
 }
 
-function setupRenderEffect(instance: any, container) {
-  const subTree = instance.render();
+function setupRenderEffect(instance: any, initinalVNode, container) {
+  const { proxy } = instance;
+  const subTree = instance.render.call(proxy);
 
   // vnode -> patch
   // vnode -> element -> mountElement
   patch(subTree, container);
+
+  initinalVNode.el = subTree.el;
 }
