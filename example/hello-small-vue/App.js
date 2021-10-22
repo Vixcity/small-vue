@@ -8,7 +8,10 @@ export const App = {
     window.self = this
     return h("div", {
         id:'root',
-        class:["red",'hard']
+        class:["red",'hard'],
+        onClick() {
+          console.log('click')
+        }
       },
       // setupState
       // this.$el -> get root element
