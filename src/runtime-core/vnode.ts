@@ -6,20 +6,21 @@ export function createVNode(type, props?, children?) {
     props,
     children,
     el: null,
-    shapeFlag: getShapeFlag(type)
+    shapeFlag: getShapeFlag(type),
   };
-  
-  // children 
-  if(typeof children === 'string') {
-    vnode.shapeFlag |= ShapeFlags.TEXT_CHILDREN
-  } else if(Array.isArray(children)) {
-    vnode.shapeFlag |= ShapeFlags.ARRAY_CHILDREN
+
+  // children
+  if (typeof children === "string") {
+    vnode.shapeFlag |= ShapeFlags.TEXT_CHILDREN;
+  } else if (Array.isArray(children)) {
+    vnode.shapeFlag |= ShapeFlags.ARRAY_CHILDREN;
   }
 
   return vnode;
 }
 
 function getShapeFlag(type) {
-  return typeof type === 'string' ? ShapeFlags.ELEMENT : ShapeFlags.STATEFUL_COMPONENT
+  return typeof type === "string"
+    ? ShapeFlags.ELEMENT
+    : ShapeFlags.STATEFUL_COMPONENT;
 }
-

@@ -1,5 +1,4 @@
-import { visitNode } from "../../node_modules/typescript/lib/typescript";
-import { isObject } from "../shared/index";
+import { isOn } from "../shared/index";
 import { ShapeFlags } from "../shared/ShapeFlags";
 import { createComponentInstance, setupComponent } from "./component";
 
@@ -10,9 +9,9 @@ export function render(vnode, container) {
 
 function patch(vnode, container) {
   // 处理组件
-  // ShapFlags
+  // ShapeFlags
   // vnode -> flag
-  const { shapeFlag } = vnode
+  const { shapeFlag } = vnode;
   if (shapeFlag & ShapeFlags.ELEMENT) {
     processElement(vnode, container);
   } else if (shapeFlag & ShapeFlags.STATEFUL_COMPONENT) {
@@ -51,15 +50,13 @@ function mountElement(vnode: any, container: any) {
   for (const key in props) {
     const val = props[key];
 
-    console.log(key)
+    // console.log(key)
     // 具体 => 通用
     // on + eventName
 
-    const isOn = (key:string) => /^on[A-Z]/.test(key)
-
-    if(isOn(key)){
-      const event = key.slice(2).toLowerCase()
-      el.addEventListener(event,val)
+    if (isOn(key)) {
+      const event = key.slice(2).toLowerCase();
+      el.addEventListener(event, val);
     } else {
       el.setAttribute(key, val);
     }
