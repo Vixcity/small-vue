@@ -1,5 +1,6 @@
 import { visitNode } from "../../node_modules/typescript/lib/typescript";
 import { isObject } from "../shared/index";
+import { ShapeFlags } from "../shared/ShapeFlags";
 import { createComponentInstance, setupComponent } from "./component";
 
 export function render(vnode, container) {
@@ -9,13 +10,12 @@ export function render(vnode, container) {
 
 function patch(vnode, container) {
   // 处理组件
-
-  // TODO:判断这个vnode是不是element类型?处理element:处理component
-  // 思考题：如何去区分是element类型还是component类型 -> 判断他的type是不是对象
-  // processElement()
-  if (typeof vnode.type === "string") {
+  // ShapFlags
+  // vnode -> flag
+  const { shapeFlag } = vnode
+  if (shapeFlag & ShapeFlags.ELEMENT) {
     processElement(vnode, container);
-  } else if (isObject(vnode.type)) {
+  } else if (shapeFlag & ShapeFlags.STATEFUL_COMPONENT) {
     processComponent(vnode, container);
   }
 }
@@ -36,13 +36,15 @@ function mountComponent(initinalVNode: any, container) {
 }
 
 function mountElement(vnode: any, container: any) {
-  const { children, type, props } = vnode;
+  const { children, type, props, shapeFlag } = vnode;
   const el = (vnode.el = document.createElement(type));
 
   // string || array
-  if (typeof children === "string") {
+  if (shapeFlag & ShapeFlags.TEXT_CHILDREN) {
+    // text_children
     el.textContent = children;
-  } else if (Array.isArray(children)) {
+  } else if (shapeFlag & ShapeFlags.ARRAY_CHILDREN) {
+    // array_children
     mountChildren(vnode, el);
   }
 
