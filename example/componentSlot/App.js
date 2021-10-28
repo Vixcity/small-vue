@@ -1,4 +1,4 @@
-import { h } from "../../lib/small-vue.esm.js";
+import { h,createTextVNode } from "../../lib/small-vue.esm.js";
 import { Foo } from "./Foo.js";
 
 window.self = null;
@@ -13,7 +13,11 @@ export const App = {
       Foo,
       {},
       {
-        header: ({ age }) => h("p", {}, "header" + age),
+        // element -> 标签类型
+        header: ({ age }) => [
+          h("p", {}, "header" + age),
+          createTextVNode("你好呀"),
+        ],
         footer: () => h("p", {}, "footer"),
       }
     );
