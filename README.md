@@ -6,23 +6,38 @@
 
 目前进度
 
-- [x] computed
-- [x] reactive
-- [x] run-time-core
-- [x] ref功能
-- [x] rollup打包
-- [x] 组件代理对象
-- [x] effect 的 stop 功能
-- [x] readonly
-- [x] element主流程
-- [x] 注册事件功能
-- [x] props逻辑
-- [x] 组件slot功能
-- [x] 组件emit功能
-- [x] Fragment 和 Text 节点
-- [x] getCurrentInstance
-- [x] provide-inject
-- [x] 自定义渲染器 custom renderer
+- [x] reactivity 的核心流程
+- [x] runtime-core 初始化的核心流程
+- [x] runtime-core 更新的核心流程
+- [x] setup环境-集成jest做单元测试-集成 ts
+- [x] 实现 effect & reactive & 依赖收集 & 触发依赖
+- [x] 实现 effect 返回 runner
+- [x] 实现 effect 的scheduler 功能
+- [x] 实现 effect 的 stop 功能
+- [x] 实现 readonly 功能
+- [x] 实现 isReactive 和 isReadonly
+- [x] 优化 stop 功能
+- [x] 实现 reactive 和 readonly 嵌套对象转换功能
+- [x] 实现 shallowReadonly 功能
+- [x] 实现 isProxy 功能
+- [x] 实现 ref 功能
+- [x] 实现 isRef 和 unRef 功能
+- [x] 实现 proxyRefs 功能
+- [x] 实现 computed 计算属性功能
+- [x] 实现初始化 component 主流程
+- [x] 使用 rollup 打包库
+- [x] 实现初始化 element 主流程
+- [x] 实现组件代理对象
+- [x] 实现 shapeFlags
+- [x] 实现注册事件功能
+- [x] 实现组件 props 功能
+- [x] 实现组件 emit 功能
+- [x] 实现组件 slots 功能
+- [x] 实现 Fragment 和 Text 类型节点
+- [x] 实现 getCurrentInstance
+- [x] 实现依赖注入功能（provide/inject）
+- [x] 实现自定义渲染器 custom renderer
+
 - [x] 自动提交代码命令实现(Vue开发时的提交流程简化，命令如下)
 
 ```bash
@@ -31,9 +46,18 @@ yarn release
 
 待完成
 
-- [ ] element 的 children - 双端对比diff 算法
+- [ ] 更新element流程搭建
+- [ ] 更新element 的 props
+- [ ] 更新 element 的 children
+- [ ] 更新 element 的 children - 双端对比diff 算法（1）
+- [ ] 更新 element 的 children - 双端对比diff 算法 （2）
+- [ ] 更新 element 的 children - 双端对比diff 算法 （3）
+- [ ] 学习尤大解决 bug 的处理方式
 - [ ] 实现组件更新功能
 - [ ] 实现 nextTick 功能
+- [ ] 编译模块概述
+- [ ] 实现解析插值功能
+- [ ] 实现解析element 标签
 
 如果对我感兴趣的话，你也可以在以下渠道了解一下我
 
