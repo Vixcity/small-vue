@@ -28,8 +28,9 @@ Date.prototype.Format = function (formatStr) {
     /MM/,
     this.getMonth() + 1 > 9
       ? (this.getMonth() + 1).toString()
-      : "0" + this.getMonth() + 1
+      : "0" + (this.getMonth() + 1)
   );
+  
   str = str.replace(/M/g, this.getMonth());
 
   str = str.replace(/w|W/g, Week[this.getDay()]);
