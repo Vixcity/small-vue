@@ -37,6 +37,7 @@
 - [x] 实现 getCurrentInstance
 - [x] 实现依赖注入功能（provide/inject）
 - [x] 实现自定义渲染器 custom renderer
+- [x] 更新element流程搭建
 
 - [x] 自动提交代码命令实现(Vue开发时的提交流程简化，命令如下)
 
@@ -46,7 +47,6 @@ yarn release
 
 待完成
 
-- [ ] 更新element流程搭建
 - [ ] 更新element 的 props
 - [ ] 更新 element 的 children
 - [ ] 更新 element 的 children - 双端对比diff 算法（1）

@@ -103,10 +103,11 @@ export function effect(fn, options: any = {}) {
   // options
   // Object.assign(_effect, options)
   // extend
-  extend(_effect, options);
 
+  extend(_effect, options);
   _effect.run();
 
+  
   const runner: any = _effect.run.bind(_effect);
   runner.effect = _effect;
 
