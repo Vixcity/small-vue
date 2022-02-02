@@ -8,8 +8,9 @@ export function createVNode(type, props?, children?) {
     type,
     props,
     children,
-    el: null,
+    key:props && props.key,
     shapeFlag: getShapeFlag(type),
+    el: null,
   };
 
   // children

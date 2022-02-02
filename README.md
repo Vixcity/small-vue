@@ -42,6 +42,7 @@
 - [x] 更新 element 的 children array to text
 - [x] 更新 element 的 children text to text
 - [x] 更新 element 的 children text to array
+- [x] 更新 element 的 children - 双端对比diff 算法（1）
 
 - [x] 自动提交代码命令实现(Vue开发时的提交流程简化，命令如下)
 
@@ -51,7 +52,6 @@ yarn release
 
 待完成
 
-- [ ] 更新 element 的 children - 双端对比diff 算法（1）
 - [ ] 更新 element 的 children - 双端对比diff 算法 （2）
 - [ ] 更新 element 的 children - 双端对比diff 算法 （3）
 - [ ] 学习尤大解决 bug 的处理方式
